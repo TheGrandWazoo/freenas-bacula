@@ -59,6 +59,7 @@ print_storage_stanza () {
       [ ${WORKING_DIRECTORY}       ] && echo "  Working Directory = ${WORKING_DIRECTORY}"
       [ ${PID_DIRECTORY}           ] && echo "  Pid Directory = ${PID_DIRECTORY}"
       [ ${MAXIMUM_CONCURRENT_JOBS} ] && echo "  Maximum Concurrent Jobs = ${MAXIMUM_CONCURRENT_JOBS}"
+      					echo "  Heartbeat Interval = 1 Minute"
       echo '}'
     done
 }
