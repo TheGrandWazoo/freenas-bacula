@@ -34,6 +34,11 @@ class BaculaSDStorage(models.Model):
             help_text=_("Maximum number of Jobs that may run concurrently."),
             verbose_name=_("Maximum Concurrent Jobs"),
             )
+    baculasd_st_heartbeatinterval = models.IntegerField(
+            default=0,
+            help_text=_("Specifies a Heartbeat (keepalive) Interval in seconds."),
+            verbose_name=_("Heartbeat Interval"),
+            )
     baculasd_st_proceeddespiteioerrors = models.BooleanField(
             default=False,
             verbose_name=_("Proceed despite I/O errors"),
