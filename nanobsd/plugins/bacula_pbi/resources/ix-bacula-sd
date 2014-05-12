@@ -35,7 +35,8 @@ print_sql_storage () {
 	       baculasd_st_sdport,
 	       '/usr/pbi',
 	       '/var/run',
-	       baculasd_st_maximumconcurrentjobs
+	       baculasd_st_maximumconcurrentjobs,
+	       baculasd_st_heartbeatinterval
 	FROM freenas_baculasdstorage
 	WHERE id = ${STORAGE_ID=$}
 	EOT
@@ -51,7 +52,8 @@ print_storage_stanza () {
                SDPORT                  \
                WORKING_DIRECTORY       \
                PID_DIRECTORY           \
-               MAXIMUM_CONCURRENT_JOBS
+               MAXIMUM_CONCURRENT_JOBS \
+               HEARTBEAT_INTERVAL
     do
       echo 'Storage {'
       [ ${NAME}                    ] && echo "  Name = ${NAME}"
@@ -59,7 +61,7 @@ print_storage_stanza () {
       [ ${WORKING_DIRECTORY}       ] && echo "  Working Directory = ${WORKING_DIRECTORY}"
       [ ${PID_DIRECTORY}           ] && echo "  Pid Directory = ${PID_DIRECTORY}"
       [ ${MAXIMUM_CONCURRENT_JOBS} ] && echo "  Maximum Concurrent Jobs = ${MAXIMUM_CONCURRENT_JOBS}"
-      					echo "  Heartbeat Interval = 1 Minute"
+      [ ${HEARTBEAT_INTERVAL}      ] &&	echo "  Heartbeat Interval = ${HEARTBEAT_INTERVAL} Seconds"
       echo '}'
     done
 }
