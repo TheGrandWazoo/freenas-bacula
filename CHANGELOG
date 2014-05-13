@@ -1,3 +1,9 @@
+1.0-BETA1
+======================
+	- Updated to FreeNAS 9.x conformance
+	- Added the "Heartbeat Interval" options
+	- Imported bug fixes and enhancements
+
 0.1-BETA2
 ======================
 
