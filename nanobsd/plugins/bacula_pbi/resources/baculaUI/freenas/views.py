@@ -162,7 +162,7 @@ class JsonResponse(HttpResponse):
         return field
 
 
-def _generic_delete(request, oid, model):
+def _generic_delete(request, plugin_id, oid, model):
 
     bacula_key, bacula_secret = utils.get_bacula_oauth_creds()
     url = utils.get_rpc_url(request)
@@ -551,7 +551,7 @@ def devices_edit(request, plugin_id, oid):
     instance = models.BaculaSDDevice.objects.get(id=oid)
     delete_url = reverse('bacula_devices_delete', kwargs={'plugin_id': plugin_id, 'oid': instance.id})
     if request.method == "POST":
-        form = forms.BaculaSDDeviceForm(request.POST, instance=instance, jail=jail)
+        form = forms.BaculaSDDeviceForm(request.POST, instance=instance, jail_path=jail_path)
         if form.is_valid():
             form.save()
             return JsonResponse(request,
@@ -563,7 +563,7 @@ def devices_edit(request, plugin_id, oid):
             'delete_url': delete_url,
         })
     else:
-        form = forms.BaculaSDDeviceForm(instance=instance, jail=jail)
+        form = forms.BaculaSDDeviceForm(instance=instance, jail_path=jail_path)
 
     return render(request, "devices_edit.html", {
         'form': form,
@@ -572,7 +572,7 @@ def devices_edit(request, plugin_id, oid):
 
 
 def devices_delete(request, plugin_id, oid):
-    return _generic_delete(request, oid, model=models.BaculaSDDevice)
+    return _generic_delete(request, plugin_id, oid, model=models.BaculaSDDevice)
 
 
 def deviceassigns_new(request, plugin_id):
@@ -640,7 +640,7 @@ def deviceassigns_edit(request, plugin_id, oid):
 
 
 def deviceassigns_delete(request, plugin_id, oid):
-    return _generic_delete(request, oid, model=models.BaculaSDDeviceAssignment)
+    return _generic_delete(request, plugin_id, oid, model=models.BaculaSDDeviceAssignment)
 
 
 def directors_new(request, plugin_id):
@@ -708,7 +708,7 @@ def directors_view(request, plugin_id):
 
 
 def directors_delete(request, plugin_id, oid):
-    return _generic_delete(request, oid, model=models.BaculaSDDirector)
+    return _generic_delete(request, plugin_id, oid, model=models.BaculaSDDirector)
 
 
 def directorassigns_new(request, plugin_id):
@@ -776,7 +776,7 @@ def directorassigns_view(request, plugin_id):
 
 
 def directorassigns_delete(request, plugin_id, oid):
-    return _generic_delete(request, oid, model=models.BaculaSDDirectorAssignment)
+    return _generic_delete(request, plugin_id, oid, model=models.BaculaSDDirectorAssignment)
 
 
 def daemons_new(request, plugin_id):
@@ -844,7 +844,7 @@ def daemons_view(request, plugin_id):
 
 
 def daemons_delete(request, plugin_id, oid):
-    return _generic_delete(request, oid, model=models.BaculaSDStorage)
+    return _generic_delete(request, plugin_id, oid, model=models.BaculaSDStorage)
 
 
 def messages_new(request, plugin_id):
@@ -912,7 +912,7 @@ def messages_edit(request, plugin_id, oid):
 
 
 def messages_delete(request, plugin_id, oid):
-    return _generic_delete(request, oid, model=models.BaculaSDMessages)
+    return _generic_delete(request, plugin_id, oid, model=models.BaculaSDMessages)
 
 
 def messagesassigns_new(request, plugin_id):
@@ -980,4 +980,4 @@ def messagesassigns_edit(request, plugin_id, oid):
 
 
 def messagesassigns_delete(request, plugin_id, oid):
-    return _generic_delete(request, oid, model=models.BaculaSDMessagesAssignment)
+    return _generic_delete(request, plugin_id, oid, model=models.BaculaSDMessagesAssignment)
