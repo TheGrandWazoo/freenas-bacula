@@ -61,8 +61,8 @@ PLUGINPKGDIR="${PBI_PKGDIR}/${PLUGIN}-${NANO_ARCH}"
 mkdir -p "${PLUGINPKGDIR}"
 if [ "$?" != "0" ]
 then
-        echo "${PLUGIN}: unable to create ${PLUGINPKGDIR}!"
-        exit 1
+	echo "${PLUGIN}: unable to create ${PLUGINPKGDIR}!"
+	exit 1
 fi
 export PLUGINPKGDIR
 
