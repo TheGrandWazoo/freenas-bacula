@@ -21,7 +21,6 @@ class Migration(SchemaMigration):
             ('baculasd_st_name', self.gf('django.db.models.fields.CharField')(default='freenas-sd', unique=True, max_length=255)),
             ('baculasd_st_sdport', self.gf('django.db.models.fields.IntegerField')(default=9103, unique=True)),
             ('baculasd_st_maximumconcurrentjobs', self.gf('django.db.models.fields.IntegerField')(default=10)),
-            ('baculasd_st_heartbeatinterval', self.gf('django.db.models.fields.IntegerField')(default=0)),
             ('baculasd_st_proceeddespiteioerrors', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
         db.send_create_signal('freenas', ['BaculaSDStorage'])
@@ -170,7 +169,6 @@ class Migration(SchemaMigration):
         'freenas.baculasdstorage': {
             'Meta': {'object_name': 'BaculaSDStorage'},
             'baculasd_st_maximumconcurrentjobs': ('django.db.models.fields.IntegerField', [], {'default': '10'}),
-            'baculasd_st_heartbeatinterval': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'baculasd_st_name': ('django.db.models.fields.CharField', [], {'default': "'freenas-sd'", 'unique': 'True', 'max_length': '255'}),
             'baculasd_st_proceeddespiteioerrors': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'baculasd_st_sdport': ('django.db.models.fields.IntegerField', [], {'default': '9103', 'unique': 'True'}),
